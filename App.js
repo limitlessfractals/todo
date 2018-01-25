@@ -3,12 +3,19 @@ import {View,Text, TextInput, Button} from 'react-native';
 
 class App extends React.Component{
   state = {
-    text: "This is our message on screen",
-    todo: " "
+    text: "",
+    todo: ["learn", "eat", "sleep"]
   }
   // es6 function, setState, not =
   addTodo = () =>{
     this.setState({todo: this.state.text});
+  }
+  renderTodos = () =>{
+    return this.state.todo.map(t=>{
+      return (
+        <Text key={t}>{t}</Text>
+      )
+    })
   }
   render(){
     return(
@@ -22,7 +29,7 @@ class App extends React.Component{
           title="Add Todo"
           onPress={this.addTodo}
         />
-        <Text>{this.state.todo}</Text>
+        {this.renderTodos()}
       </View>
     )
   }
